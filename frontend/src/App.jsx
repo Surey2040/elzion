@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Home from './pages/Home.jsx';
+import CaseStudy from './components/case/CaseStudy.jsx';
+import { JOTHI, KADAIKUTTY } from './components/case/projects.js';
 import JothiVelChitsEditorial from './pages/JothiVelChitsEditorial.jsx';
 import JothiVelChitsOS from './pages/JothiVelChitsOS.jsx';
 import JothiVelChitsFilm from './pages/JothiVelChitsFilm.jsx';
@@ -34,12 +36,12 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/projects/jothi-vel-chits" element={<JothiVelChitsOS />} />
-        <Route path="/jothi-vel-chits" element={<JothiVelChitsOS />} />
+        <Route path="/projects/jothi-vel-chits" element={<CaseStudy data={JOTHI} />} />
+        <Route path="/jothi-vel-chits" element={<CaseStudy data={JOTHI} />} />
         <Route path="/projects/jothi-vel-chits-editorial" element={<JothiVelChitsEditorial />} />
         <Route path="/projects/jothi-vel-chits-os" element={<JothiVelChitsOS />} />
         <Route path="/projects/jothi-vel-chits-film" element={<JothiVelChitsFilm />} />
-        <Route path="/projects/kadaikutty-pos" element={<KadaikuttyGenome />} />
+        <Route path="/projects/kadaikutty-pos" element={<CaseStudy data={KADAIKUTTY} />} />
         <Route path="/projects/kadaikutty-pos-demo" element={<KadaikuttyPosControl />} />
         <Route path="/projects/kadaikutty-pos-a" element={<KadaikuttyPosControl />} />
         <Route path="/projects/kadaikutty-pos-b" element={<KadaikuttyVariants variant="b" />} />
@@ -52,7 +54,7 @@ export default function App() {
         <Route path="/demos/faq-contact-c" element={<FaqContactDemo variant="c" />} />
         <Route path="/demos/faq-contact-d" element={<FaqContactDemo variant="d" />} />
         <Route path="/demos/faq-contact-e" element={<FaqContactKinetic />} />
-        <Route path="/kadaikutty-pos" element={<KadaikuttyGenome />} />
+        <Route path="/kadaikutty-pos" element={<CaseStudy data={KADAIKUTTY} />} />
       </Routes>
     </BrowserRouter>
   );

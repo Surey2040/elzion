@@ -18,8 +18,6 @@ export function initMotion() {
   if (reduced) return;
 
   const root = document.documentElement;
-  root.classList.add('mx-loading');
-  curtain();
 
   // wait for React to mount the home page
   const ready = () => document.querySelector('main#top .hero');
@@ -47,26 +45,6 @@ export function initMotion() {
     heroFlow();
     floatPill();
     contactTyping();
-  }
-
-  /* ---------------- Intro curtain ---------------- */
-  function curtain() {
-    const c = document.createElement('div');
-    c.id = 'mx-curtain';
-    const letters = (s, start) => [...s].map((ch, i) => `<span class="mx-c"><span style="--i:${start + i}">${ch}</span></span>`).join('');
-    c.innerHTML = `<div class="mx-logo">${letters('elz', 0)}<span class="mx-box">${letters('ion.', 3)}</span></div>`;
-    const g = document.createElement('div'); g.id = 'mx-curtain2';
-    const mount = () => { document.body.appendChild(g); document.body.appendChild(c); };
-    document.body ? mount() : document.addEventListener('DOMContentLoaded', mount, { once: true });
-    const lift = () => {
-      c.classList.add('mx-out');
-      setTimeout(() => g.classList.add('mx-out'), 140);
-      root.classList.remove('mx-loading');
-      const recheck = () => dispatchEvent(new Event('scroll'));
-      setTimeout(recheck, 500);
-      setTimeout(() => { c.remove(); g.remove(); recheck(); }, 1400);
-    };
-    setTimeout(lift, 1300);
   }
 
   /* ---------------- Scroll progress ---------------- */
@@ -577,25 +555,35 @@ export function initMotion() {
       const a = clamp(A / 0.94), e = a * a * (3 - 2 * a);
       ctx.clearRect(0, 0, W, Hc);
       const R = Math.max(70, W * 0.07), R2 = R * R;
-      let paper = new Path2D(), green = new Path2D();
+      // a band of light sweeps across the word every few seconds
+      const band = (((t * 0.00022) % 1.5) - 0.25) * W, bw = Math.max(60, W * 0.07);
+      let paper = new Path2D(), green = new Path2D(), hot = new Path2D();
       for (const p of parts) {
-        const wob = Math.sin(t * 0.0015 + p.ph) * 0.6;
+        // travelling wave, left to right
+        const wob = Math.sin(t * 0.0022 - p.hx * 0.012) * (2.2 + 1.6 * e);
         const tl = window.__mxTilt;
         const tx = p.sx + (p.hx - p.sx) * e + (tl ? tl.x * 26 * (0.4 + p.hy / Hc) : 0),
               ty = p.sy + (p.hy - p.sy) * e + wob + (tl ? tl.y * 14 : 0);
         let ax = (tx - p.x) * 0.045, ay = (ty - p.y) * 0.045;
+        let heat = 0;
         if (mouse.active) {
           const dx = p.x - mouse.x, dy = p.y - mouse.y, d2 = dx * dx + dy * dy;
+          if (d2 < R2 * 2.2) heat = Math.max(heat, 1 - Math.sqrt(d2) / (R * 1.48));
           if (d2 < R2 && d2 > 0.01) { const d = Math.sqrt(d2), f = (1 - d / R) * 5.5; ax += (dx / d) * f; ay += (dy / d) * f; }
         }
+        const bd = Math.abs(p.x - band);
+        if (bd < bw && e > 0.6) { const k = 1 - bd / bw; heat = Math.max(heat, k); ay -= k * 0.9; }
         p.vx = (p.vx + ax) * 0.86; p.vy = (p.vy + ay) * 0.86;
         p.x += p.vx; p.y += p.vy;
-        const sz = p.s * (0.55 + 0.45 * e);
-        (p.green ? green : paper).rect(p.x - sz / 2, p.y - sz / 2, sz, sz);
+        const sz = p.s * (0.55 + 0.45 * e) * (1 + heat * 0.9);
+        (heat > 0.3 ? hot : p.green ? green : paper).rect(p.x - sz / 2, p.y - sz / 2, sz, sz);
       }
       ctx.globalAlpha = 0.25 + 0.75 * e;
       ctx.fillStyle = PAPER; ctx.fill(paper);
       ctx.fillStyle = GREEN; ctx.fill(green);
+      ctx.shadowColor = 'rgba(20,196,127,.9)'; ctx.shadowBlur = 12;
+      ctx.fillStyle = '#b6ffd9'; ctx.fill(hot);
+      ctx.shadowBlur = 0;
       ctx.globalAlpha = 1;
       raf = requestAnimationFrame(frame);
     }

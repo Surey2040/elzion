@@ -20,7 +20,6 @@
 .fk-faq { padding-top: var(--sec) !important; padding-bottom: var(--sec) !important; }
 .fk-contact { padding-top: clamp(64px, 7vw, 104px) !important; padding-bottom: clamp(64px, 7vw, 104px) !important; }
 
-footer.ft { padding-top: clamp(64px, 6vw, 88px); }
 
 /* See Work: compact, no longer a full-screen block */
 @media (min-width: 821px) {
@@ -33,4 +32,39 @@ footer.ft { padding-top: clamp(64px, 6vw, 88px); }
   .work-project h3 { font-size: clamp(40px, 4.4vw, 68px) !important; }
   .work-project-foot { margin-top: 20px !important; }
   .work-project-number { font-size: clamp(140px, 15vw, 230px) !important; }
+}
+
+/* Process timeline: clearer column lines */
+@media (min-width: 821px) {
+  .steps::before {
+    background:
+      repeating-linear-gradient(90deg, rgba(17,19,17,.3) 0 1.5px, transparent 1.5px calc(100% / 6)),
+      linear-gradient(90deg, transparent calc(100% - 1.5px), rgba(17,19,17,.3) calc(100% - 1.5px));
+  }
+}
+
+/* How We Work Together: one full-width row of pinned cards instead of a tall zigzag */
+@media (min-width: 1024px) {
+  .hiw .hiw-inner { max-width: min(1640px, 94vw); }
+  .hiw .hiw-board { height: auto !important; }
+  .hiw .hiw-path { display: none; }
+  .hiw .hiw-list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 26px); align-items: start; position: relative; padding-block: 10px 40px; }
+  .hiw .hiw-list::before { content: ""; position: absolute; left: 4%; right: 4%; top: 46%; height: 2px; z-index: -1;
+    background: repeating-linear-gradient(90deg, var(--green-deep) 0 8px, transparent 8px 14px); opacity: .55;
+    animation: hiwRow 1.4s linear infinite; }
+  .hiw .hiw-card { position: relative; top: auto; left: auto; right: auto; width: auto; max-width: none; rotate: -2.5deg; }
+  .hiw .hiw-card:nth-child(even) { margin-top: 70px; rotate: 2.5deg; }
+  .hiw .hiw-card:hover { rotate: 0deg; }
+  .hiw .hiw-body { min-height: 230px; }
+}
+@keyframes hiwRow { to { background-position: 14px 0; } }
+
+/* FAQs: use the full width */
+.fk-faq .fq-head, .fk-faq .fq-row { max-width: min(1640px, 100%); }
+.fk-embedded .fk-faq { padding-inline: clamp(16px, 3vw, 56px) !important; }
+@media (min-width: 1500px) { .fk-faq .fq-row { height: clamp(440px, 50vh, 540px); } }
+
+/* Large screens: let every section use more of the width */
+@media (min-width: 1500px) {
+  .wrap { max-width: min(1640px, 94vw) !important; }
 }

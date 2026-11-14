@@ -1,98 +1,78 @@
 /* ==========================================================================
-   Footer: big CTA, spinning "start a project" badge, four columns, outlined wordmark
+   Footer: compact CTA + link columns, particle "elzion." wordmark, legal row
    ========================================================================== */
 footer.ft{position:relative;isolation:isolate;overflow:hidden;background:var(--ink);color:var(--paper);
-  border-radius:40px 40px 0 0;padding-block:clamp(64px,8vw,110px) 0}
+  border-radius:36px 36px 0 0;padding-top:clamp(44px,5vw,72px)}
 footer.ft::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:
-    radial-gradient(60% 50% at 88% 0%,rgba(20,196,127,.16),transparent 70%),
-    linear-gradient(rgba(247,247,243,.035) 1px,transparent 1px) 0 0/100% 64px,
-    linear-gradient(90deg,rgba(247,247,243,.035) 1px,transparent 1px) 0 0/64px 100%;
-  -webkit-mask-image:linear-gradient(#000 40%,transparent);mask-image:linear-gradient(#000 40%,transparent)}
+    radial-gradient(50% 60% at 50% 100%,rgba(20,196,127,.18),transparent 70%),
+    radial-gradient(40% 40% at 92% 0%,rgba(20,196,127,.10),transparent 70%)}
+footer.ft::after{content:"";position:absolute;left:0;right:0;top:0;height:1px;z-index:1;
+  background:linear-gradient(90deg,transparent,var(--green),transparent);background-size:40% 100%;background-repeat:no-repeat;
+  animation:ftLine 6s cubic-bezier(.65,0,.35,1) infinite}
+@keyframes ftLine{0%{background-position:-60% 0}100%{background-position:160% 0}}
 
-/* Crossing tapes */
-.ft-tapes{position:relative;height:clamp(120px,13vw,190px);margin:calc(clamp(64px,8vw,110px) * -1 + 10px) 0 clamp(36px,4vw,56px);pointer-events:none}
-.ft-tape{position:absolute;left:-6%;right:-6%;top:50%;overflow:hidden;border-block:1.5px solid var(--ink);box-shadow:0 18px 40px rgba(0,0,0,.35)}
-.ft-tape-a{background:var(--green);color:var(--ink);transform:translateY(-50%) rotate(-3.2deg);z-index:2}
-.ft-tape-b{background:var(--paper);color:var(--ink);transform:translateY(-50%) rotate(2.6deg);z-index:1}
-.ft-tape-track{display:flex;width:max-content;animation:ftTape 26s linear infinite}
-.ft-tape-b .ft-tape-track{animation-direction:reverse;animation-duration:32s}
-.ft-tape-group{display:flex;flex:none}
-.ft-tape span{display:inline-flex;align-items:center;gap:clamp(18px,2vw,32px);padding:clamp(12px,1.3vw,18px) clamp(9px,1vw,16px);
-  font:800 clamp(20px,2.6vw,40px)/1 var(--display);letter-spacing:-.03em;text-transform:uppercase;white-space:nowrap}
-.ft-tape span i{font-style:normal;font-size:.6em}
-.ft-tape-b span i{color:var(--green-deep)}
-@keyframes ftTape{to{transform:translateX(-50%)}}
+/* Top row */
+.ft-top{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,5vw,80px);align-items:end}
+.ft-cta h2{font-size:clamp(34px,4.2vw,62px);font-weight:800;line-height:.98;letter-spacing:-.05em;color:var(--paper)}
+.ft-cta h2 em{font-style:normal;display:inline-block;background:var(--green);color:var(--ink);padding:0 .14em .05em;border-radius:.16em;line-height:.9;
+  animation:ftWiggle 4s ease-in-out infinite}
+@keyframes ftWiggle{0%,80%,100%{transform:rotate(0)}85%{transform:rotate(-4deg)}90%{transform:rotate(3deg)}95%{transform:rotate(-1deg)}}
 
-/* Top: headline + badge */
-.ft-top{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;padding-bottom:clamp(48px,6vw,72px);border-bottom:1px solid rgba(247,247,243,.12)}
-.ft-status{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(247,247,243,.18);border-radius:999px;padding:8px 14px;
-  font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#CFD2CB}
-.ft-status i{position:relative;width:8px;height:8px;border-radius:50%;background:var(--green)}
-.ft-status i::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--green);animation:ftPing 1.8s cubic-bezier(0,0,.2,1) infinite}
-@keyframes ftPing{75%,100%{transform:scale(2.8);opacity:0}}
-.ft-cta h2{margin-top:26px;font-size:clamp(46px,7.2vw,112px);font-weight:800;line-height:.92;letter-spacing:-.055em;color:var(--paper)}
-.ft-cta h2 em{font-style:normal;display:inline-block;background:var(--green);color:var(--ink);padding:0 .14em .06em;border-radius:.14em;line-height:.86}
+.ft-btn{margin-top:26px;display:inline-flex;align-items:center;gap:14px;padding:8px 8px 8px 24px;border-radius:999px;
+  background:var(--paper);color:var(--ink);font-weight:700;font-size:15px;position:relative;overflow:hidden;isolation:isolate;
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.ft-btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--green);transform:translateY(101%);border-radius:inherit;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.ft-btn-text{display:inline-block;overflow:hidden;position:relative;height:1.25em;line-height:1.25}
+.ft-btn-text::after{content:attr(data-text);position:absolute;left:0;top:100%}
+.ft-btn-text,.ft-btn-text::after{transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.ft-btn i{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--ink);color:var(--green);font-style:normal;font-size:18px;
+  transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+.ft-btn:hover{transform:translateY(-3px)}
+.ft-btn:hover::before{transform:none}
+.ft-btn:hover .ft-btn-text{color:transparent}
+.ft-btn:hover .ft-btn-text::after{transform:translateY(-100%);color:var(--ink)}
+.ft-btn:hover i{transform:rotate(45deg)}
 
-.ft-orb{position:relative;flex:none;display:grid;place-items:center;width:clamp(150px,15vw,210px);aspect-ratio:1;border-radius:50%;
-  background:var(--green);color:var(--ink);transition:transform .5s cubic-bezier(.34,1.56,.64,1),background .3s}
-.ft-orb svg{position:absolute;inset:0;width:100%;height:100%;animation:ftSpin 16s linear infinite}
-.ft-orb text{font:800 13px var(--body);letter-spacing:.24em;fill:var(--ink)}
-.ft-orb-core{display:grid;place-items:center;width:34%;aspect-ratio:1;border-radius:50%;background:var(--ink);color:var(--green);
-  font-size:clamp(22px,2.2vw,30px);font-weight:700;transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
-.ft-orb:hover{transform:scale(1.06) rotate(-6deg);background:#24d995}
-.ft-orb:hover .ft-orb-core{transform:rotate(45deg) scale(1.08)}
-@keyframes ftSpin{to{transform:rotate(360deg)}}
+.ft-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.ft-col h4{margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green)}
+.ft-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.ft-col li{animation:ftIn .8s cubic-bezier(.16,1,.3,1) both;animation-timeline:view();animation-range:entry 0 entry 60%}
+.ft-col a{display:inline-flex;font-size:15px;font-weight:500;color:#CFD2CB;transition:color .3s,transform .4s cubic-bezier(.16,1,.3,1)}
+.ft-col a span{background:linear-gradient(var(--green),var(--green)) 0 100%/0 1.5px no-repeat;padding-bottom:2px;transition:background-size .45s cubic-bezier(.16,1,.3,1)}
+.ft-col a:hover{color:var(--paper);transform:translateX(4px)}
+.ft-col a:hover span{background-size:100% 1.5px}
+@keyframes ftIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
-/* Columns */
-.ft-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;padding-block:clamp(48px,6vw,72px)}
-.ft-brand .logo{font-size:40px}
-.ft-brand p{margin-top:18px;max-width:36ch;color:#CFD2CB;font-size:15px;line-height:1.6}
-.ft-col h4{margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
-.ft-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
-.ft-col a{display:inline-flex;align-items:center;gap:8px;font-size:17px;font-weight:500;color:var(--paper);transition:color .3s,transform .4s cubic-bezier(.16,1,.3,1)}
-.ft-col a span{background:linear-gradient(var(--green),var(--green)) 0 100%/0 2px no-repeat;padding-bottom:2px;transition:background-size .45s cubic-bezier(.16,1,.3,1)}
-.ft-col a i{font-style:normal;font-size:13px;opacity:.45;transition:opacity .3s,transform .4s cubic-bezier(.16,1,.3,1)}
-.ft-col a:hover{color:var(--green);transform:translateX(4px)}
-.ft-col a:hover span{background-size:100% 2px}
-.ft-col a:hover i{opacity:1;transform:translate(3px,-3px)}
-
-/* Legal row */
-.ft-legal{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding-block:26px;border-top:1px solid rgba(247,247,243,.12);font-size:14px;color:var(--dim)}
-.ft-legal-links{display:flex;gap:20px}
-.ft-legal-links a{color:var(--paper);text-decoration:underline;text-underline-offset:3px}
-.ft-legal-links a:hover{color:var(--green)}
-.ft-top-btn{display:inline-flex;align-items:center;gap:12px;color:var(--paper);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
-.ft-top-btn i{display:grid;place-items:center;width:38px;aspect-ratio:1;border-radius:50%;border:1px solid rgba(247,247,243,.25);font-style:normal;font-size:15px;
-  transition:background .3s,color .3s,border-color .3s,transform .4s cubic-bezier(.34,1.56,.64,1)}
-.ft-top-btn:hover i{background:var(--green);border-color:var(--green);color:var(--ink);transform:translateY(-4px)}
-
-/* Wordmark: outlined "elz", solid green "ion." */
-footer.ft .giant{margin-top:0;font-size:clamp(88px,24.5vw,420px);line-height:.78;letter-spacing:-.065em;white-space:nowrap;text-align:center;
-  color:transparent;-webkit-text-stroke:1.5px rgba(247,247,243,.22);transform:none;padding-bottom:clamp(14px,2.4vw,40px)}
-footer.ft .giant b{color:var(--green);opacity:1;-webkit-text-stroke:0;font-weight:800}
-
-/* Responsive */
-@media (max-width:900px){
-  .ft-top{flex-direction:column;align-items:flex-start}
-  .ft-orb{width:140px;align-self:flex-end;margin-top:-20px}
-  .ft-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .ft-brand{grid-column:1/-1}
-}
-@media (max-width:560px){
-  footer.ft{border-radius:28px 28px 0 0}
-  .ft-orb{width:120px;margin-top:0}
-  .ft-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 24px}
-  .ft-col a{font-size:16px}
-  .ft-legal{flex-direction:column;align-items:flex-start}
-  footer.ft .giant{-webkit-text-stroke-width:1px}
-}
-/* Particle wordmark (motion layer draws it on a canvas over the text) */
-footer.ft .giant{position:relative}
+/* Wordmark (particles are drawn on a canvas over it by the motion layer) */
+footer.ft .giant{position:relative;margin-top:clamp(20px,3vw,40px);font-size:clamp(84px,21vw,360px);line-height:.8;letter-spacing:-.065em;white-space:nowrap;text-align:center;
+  color:transparent;-webkit-text-stroke:1.5px rgba(247,247,243,.22);transform:none;padding-bottom:clamp(8px,1.4vw,22px)}
+footer.ft .giant b{color:var(--green);-webkit-text-stroke:0;font-weight:800}
 footer.ft .giant canvas{position:absolute;left:0;top:0;width:100%;height:100%;cursor:crosshair}
 footer.ft.mx-particles .giant{color:transparent;-webkit-text-stroke-color:transparent}
 footer.ft.mx-particles .giant b{color:transparent}
 
+/* Legal row */
+.ft-legal{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 20px;padding-block:18px 22px;
+  border-top:1px solid rgba(247,247,243,.1);font-size:13px;color:var(--dim)}
+.ft-legal-links{display:flex;gap:18px}
+.ft-legal-links a{color:#CFD2CB;transition:color .3s}
+.ft-legal-links a:hover{color:var(--green)}
+.ft-top-btn{display:inline-flex;align-items:center;gap:10px;color:var(--paper);font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.ft-top-btn i{display:grid;place-items:center;width:32px;aspect-ratio:1;border-radius:50%;border:1px solid rgba(247,247,243,.25);font-style:normal;font-size:13px;
+  transition:background .3s,color .3s,border-color .3s,transform .4s cubic-bezier(.34,1.56,.64,1)}
+.ft-top-btn:hover i{background:var(--green);border-color:var(--green);color:var(--ink);transform:translateY(-4px)}
+
+@media (max-width:900px){
+  .ft-top{grid-template-columns:1fr;align-items:start}
+}
+@media (max-width:560px){
+  footer.ft{border-radius:26px 26px 0 0}
+  .ft-cols{gap:18px}
+  .ft-col a{font-size:14px}
+  .ft-legal{flex-direction:column;align-items:flex-start}
+  footer.ft .giant{-webkit-text-stroke-width:1px}
+}
 @media (prefers-reduced-motion:reduce){
-  .ft-orb svg,.ft-status i::after,.ft-tape-track{animation:none}
+  footer.ft::after,.ft-cta h2 em,.ft-col li{animation:none}
 }
