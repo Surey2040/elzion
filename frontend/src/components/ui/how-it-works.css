@@ -1,0 +1,34 @@
+/* How it works: pinned note cards joined by an animated dashed line (see HowItWorks.jsx) */
+.hiw{position:relative;padding:80px 32px}
+.hiw-lines{position:absolute;inset:0;margin-top:4px;pointer-events:none;background-image:linear-gradient(rgba(17,19,17,.07) 1px,transparent 1px);background-size:100% 32px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent)}
+.hiw-inner{position:relative;z-index:1;max-width:1000px;margin:0 auto}
+.hiw-board{position:relative;width:100%}
+.hiw-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;align-items:center;gap:32px}
+.hiw-path{display:none}
+
+.hiw-card{--bg:var(--green-soft);--text:var(--green-deep);--border:rgba(10,152,107,.28);--title:var(--ink);--copy:var(--mute);position:relative;width:100%;max-width:340px;rotate:calc(var(--rot) / 4);transition:scale .3s ease}
+.hiw-card:hover{z-index:30;scale:1.05}
+.hiw-cream{--bg:var(--paper);--text:var(--ink-2);--border:var(--line)}
+.hiw-dark{--bg:var(--ink);--text:var(--green);--border:var(--ink-3);--title:var(--paper);--copy:#CFD2CB}
+
+.hiw-frame{background:#fff;padding:8px;border-radius:25px;border:1px solid var(--line);box-shadow:0 10px 20px rgba(17,19,17,.12)}
+.hiw-pin{display:block;width:32px;height:32px;margin:0 auto 24px;color:var(--text)}
+.hiw-body{display:flex;flex-direction:column;height:100%;padding:15px;overflow:hidden;background:var(--bg);border:1px solid var(--border);border-radius:15px}
+.hiw-num{margin-bottom:20px;font-family:var(--hand);font-size:36px;line-height:1;color:var(--text)}
+.hiw-body h3{margin-bottom:10px;font-size:24px;font-weight:600;line-height:1;color:var(--title)}
+.hiw-body p{font-size:14px;line-height:20px;letter-spacing:-.01em;color:var(--copy)}
+
+/* Cards pin up one after another when the board first scrolls into view */
+.hiw:not(.is-in) .hiw-card{opacity:0}
+.hiw.is-in .hiw-card{animation:hiwIn .8s cubic-bezier(.22,1,.36,1) backwards;animation-delay:calc(var(--i) * .14s)}
+@keyframes hiwIn{from{opacity:0;translate:0 32px}}
+
+@media (min-width:1024px){
+  .hiw-board{height:var(--board-h)}
+  .hiw-list{display:block}
+  .hiw-card{position:absolute;top:var(--t);left:var(--l);right:var(--r);width:280px;max-width:none;rotate:var(--rot)}
+  .hiw-path{display:block;position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;color:var(--green-deep);opacity:.55}
+  .hiw-path path{animation:hiwDash 3s linear infinite}
+}
+@keyframes hiwDash{to{stroke-dashoffset:-140}}
+@media (max-width:767px){.hiw{padding:40px 24px 60px}}

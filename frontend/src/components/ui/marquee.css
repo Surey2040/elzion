@@ -1,0 +1,7 @@
+.marquee-ui{width:100%;overflow:hidden;position:relative;z-index:10}
+.marquee-ui__viewport{position:relative;display:flex;max-width:90vw;margin-inline:auto;overflow:hidden;padding-block:20px}
+.marquee-ui__track{display:flex;width:max-content;animation:marquee-ui var(--duration,30s) linear infinite}
+.marquee-ui__group{display:flex;align-items:center;flex:none}
+.marquee-ui__track.is-pausable:hover{animation-play-state:paused}
+.marquee-ui__track.is-reverse{animation-direction:reverse}
+@keyframes marquee-ui{to{transform:translateX(-50%)}}
