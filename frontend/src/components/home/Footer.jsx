@@ -31,14 +31,9 @@ function Tape({ className }) {
 export default function Footer() {
   return (
     <footer className="ft">
-      <div className="ft-tapes" aria-hidden="true">
-        <Tape className="ft-tape-a" />
-        <Tape className="ft-tape-b" />
-      </div>
       <div className="wrap">
         <div className="ft-top">
           <div className="ft-cta">
-            <span className="ft-status"><i aria-hidden="true" /> Accepting new projects</span>
             <h2>
               Got an idea?
               <br />

@@ -5,6 +5,9 @@ import './styles/home.css';
 import './styles/responsive-hardening.css';
 import './motion/motion.css';
 import './styles/responsive-final.css';
+import './styles/spacing.css';
+import './styles/faq.css';
+import './styles/contact.css';
 import { initMotion } from './motion/motion.js';
 
 // Homepage only — project pages keep their own motion.

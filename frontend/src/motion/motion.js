@@ -54,19 +54,10 @@ export function initMotion() {
     const c = document.createElement('div');
     c.id = 'mx-curtain';
     const letters = (s, start) => [...s].map((ch, i) => `<span class="mx-c"><span style="--i:${start + i}">${ch}</span></span>`).join('');
-    c.innerHTML = `<div class="mx-logo">${letters('elz', 0)}<span class="mx-box">${letters('ion.', 3)}</span></div>
-      <div class="mx-count">LOADING <b>000</b></div><div class="mx-bar"></div>`;
+    c.innerHTML = `<div class="mx-logo">${letters('elz', 0)}<span class="mx-box">${letters('ion.', 3)}</span></div>`;
     const g = document.createElement('div'); g.id = 'mx-curtain2';
     const mount = () => { document.body.appendChild(g); document.body.appendChild(c); };
     document.body ? mount() : document.addEventListener('DOMContentLoaded', mount, { once: true });
-    const b = c.querySelector('b');
-    const t0 = performance.now();
-    const tick = (t) => {
-      const p = clamp((t - t0) / 1050);
-      b.textContent = String(Math.round(p * 100)).padStart(3, '0');
-      if (p < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
     const lift = () => {
       c.classList.add('mx-out');
       setTimeout(() => g.classList.add('mx-out'), 140);

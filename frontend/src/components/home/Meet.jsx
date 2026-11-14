@@ -15,7 +15,7 @@ export default function Meet() {
       <div className="wrap">
         <div className="meet-head meet-title center">
           <span className="eyebrow">Our process</span>
-          <h2>From Idea to Launch, Step by Step.</h2>
+          <h2>Ideas into Impact.</h2>
         </div>
 
         <div className="timeline-wrap">

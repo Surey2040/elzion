@@ -102,7 +102,6 @@ html.mx-loading{overflow:hidden}
   background:var(--green,#14C47F);color:#111311;font:900 13px/1 var(--body,"DM Sans",sans-serif);scale:0;rotate:-90deg;
   transition:scale .5s cubic-bezier(.34,1.8,.64,1),rotate .5s cubic-bezier(.34,1.8,.64,1);z-index:2}
 .fk-bubble.mx-valid::before{scale:1;rotate:0deg}
-.fk-console-head::after{content:attr(data-mx-sig);font-size:8px;font-weight:900;letter-spacing:.14em;color:var(--green,#14C47F);white-space:pre}
 .mx-shock{position:fixed;z-index:9001;pointer-events:none;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;border:3px solid var(--green,#14C47F)}
 
 @media (prefers-reduced-motion:reduce){
