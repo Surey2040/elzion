@@ -20,14 +20,20 @@ export default function Contact() {
     const data = new FormData(form);
     const name = String(data.get('name') || '').trim();
     const email = String(data.get('email') || '').trim();
+    const mobile = String(data.get('mobile') || '').trim();
     const project = String(data.get('message') || '').trim();
 
-    if (!name || !email || !project) {
-      setMessage('Add your name, email and a few lines about the project.');
+    if (!name || !email || !mobile || !project) {
+      setMessage('Add your name, email, mobile number and a few lines about the project.');
       return;
     }
     if (!/^\S+@\S+\.\S+$/.test(email)) {
       setMessage('That email address looks incomplete. Check it and try again.');
+      return;
+    }
+    const digits = mobile.replace(/\D/g, '');
+    if (!/^\+?[0-9\s-]+$/.test(mobile) || digits.length < 7 || digits.length > 15) {
+      setMessage('That mobile number looks incomplete. Check it and try again.');
       return;
     }
     setMessage(
@@ -53,6 +59,10 @@ export default function Contact() {
           <div className="field">
             <label htmlFor="f-email">Email</label>
             <input id="f-email" name="email" type="email" autoComplete="email" required />
+          </div>
+          <div className="field">
+            <label htmlFor="f-mobile">Mobile number</label>
+            <input id="f-mobile" name="mobile" type="tel" inputMode="tel" autoComplete="tel" required />
           </div>
           <div className="field">
             <label htmlFor="f-company">Company</label>

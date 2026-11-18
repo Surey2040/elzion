@@ -30,7 +30,6 @@ export default function FaqContactKinetic({ embedded = false }) {
       <section className="fk-faq" id="faq">
         <div className="fk-grid" aria-hidden="true"></div>
         <div className="fq-head">
-          <span className="fq-kicker">Common questions</span>
           <h2 className="fq-title"><b>FAQ</b><em>s.</em></h2>
           <p>Five things people usually ask before we start.</p>
         </div>

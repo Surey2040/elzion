@@ -112,7 +112,7 @@
   font-size: clamp(22px, 3.2vw, 36px);
   color: var(--green-deep);
   font-style: italic;
-  font-family: Georgia, serif;
+  font-family:Gelasio,Georgia,serif;
   margin-top: 4px;
 }
 
@@ -328,7 +328,7 @@
 .proj-section-head h2 em {
   color: var(--green);
   font-style: italic;
-  font-family: Georgia, serif;
+  font-family:Gelasio,Georgia,serif;
 }
 
 .proj-section-head p {
@@ -545,7 +545,7 @@
 .proj-feedback-quote-mark {
   font-size: 80px;
   line-height: 0.5;
-  font-family: Georgia, serif;
+  font-family:Gelasio,Georgia,serif;
   color: var(--green-deep);
   margin-bottom: 24px;
 }
@@ -562,7 +562,7 @@
 .proj-feedback-quote em {
   font-style: italic;
   color: var(--green-deep);
-  font-family: Georgia, serif;
+  font-family:Gelasio,Georgia,serif;
 }
 
 .proj-feedback-body {
@@ -681,7 +681,7 @@
 .jv-case-line{display:flex;align-items:center;gap:14px;margin-bottom:34px;color:#ffb5ab;font-size:10px;font-weight:800;letter-spacing:.16em}
 .jv-case-line i{width:44px;height:1px;background:currentColor}
 .jv-hero h1{font-size:clamp(60px,7vw,108px);font-weight:700;line-height:.88;letter-spacing:-.065em}
-.jv-hero h1 em{display:inline-block;color:var(--green);font-family:Georgia,serif;font-weight:400}
+.jv-hero h1 em{display:inline-block;color:var(--green);font-family:Gelasio,Georgia,serif;font-weight:400}
 .jv-hero-copy>p{max-width:550px;margin-top:32px;color:#b9bdb7;font-size:clamp(16px,1.4vw,20px);line-height:1.6}
 .jv-hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
 .jv-hero-tags span{border:1px solid #383d38;border-radius:999px;padding:7px 12px;color:#d8dbd6;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
@@ -703,7 +703,7 @@
 .jv-story>.wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(50px,10vw,140px);align-items:end}
 .jv-eyebrow{display:block;margin-bottom:24px;color:var(--green-deep);font-size:10px;font-weight:900;letter-spacing:.18em}
 .jv-story h2,.jv-explorer h2{font-size:clamp(48px,6.3vw,82px);line-height:.93;letter-spacing:-.055em}
-.jv-story h2 em{color:var(--jv-wine);font-family:Georgia,serif;font-weight:400}
+.jv-story h2 em{color:var(--jv-wine);font-family:Gelasio,Georgia,serif;font-weight:400}
 .jv-story-intro>p{max-width:630px;margin-top:30px;color:#535850;font-size:clamp(16px,1.5vw,20px);line-height:1.65}
 .jv-story-metrics{display:grid;border-top:1px solid #bfc1b8}
 .jv-story-metrics>div{display:grid;grid-template-columns:100px 1fr;align-items:center;border-bottom:1px solid #bfc1b8;padding:18px 0}
@@ -725,7 +725,7 @@
 .jv-chapter-index{position:absolute;right:4%;top:1%;color:rgba(255,255,255,.12);font-size:190px;font-weight:900;line-height:1;letter-spacing:-.1em}
 
 .jv-impact{padding:clamp(90px,11vw,150px) 0;background:var(--green);color:#0d0f0d}
-.jv-impact-quote{max-width:1060px;font-size:clamp(48px,7vw,96px);font-weight:750;line-height:.98;letter-spacing:-.055em}.jv-impact-quote em{font-family:Georgia,serif;font-weight:400}
+.jv-impact-quote{max-width:1060px;font-size:clamp(48px,7vw,96px);font-weight:750;line-height:.98;letter-spacing:-.055em}.jv-impact-quote em{font-family:Gelasio,Georgia,serif;font-weight:400}
 .jv-impact-foot{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-top:70px;border-top:1px solid rgba(13,15,13,.32);padding-top:24px}
 .jv-impact-foot span strong,.jv-impact-foot span small{display:block}.jv-impact-foot span strong{font-size:14px}.jv-impact-foot span small{margin-top:4px;font-size:10px;font-weight:800;letter-spacing:.12em}
 .jv-impact-foot>a{display:flex;align-items:center;gap:12px;font-size:12px;text-transform:uppercase;letter-spacing:.09em}.jv-impact-foot>a i{font-size:20px;font-style:normal}

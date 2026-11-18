@@ -17,6 +17,8 @@ const NEEDS = [
 const WHEN = ['As soon as possible', 'In 1–3 months', 'Just exploring'];
 const STEPS = ['Project', 'Details', 'Contact'];
 const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
+// 7–15 digits, with an optional leading + (spaces and dashes allowed)
+const isMobile = (v) => /^\+?[0-9][0-9\s-]{5,18}[0-9]$/.test(v.trim()) && v.replace(/\D/g, '').length >= 7 && v.replace(/\D/g, '').length <= 15;
 
 function Icon({ d }) {
   return <svg viewBox="0 0 24 24" aria-hidden="true"><path d={d} /></svg>;
@@ -27,20 +29,19 @@ export default function ContactSteps() {
   const [dir, setDir] = useState(1);
   const [need, setNeed] = useState(null);
   const [when, setWhen] = useState(WHEN[1]);
-  const [f, setF] = useState({ idea: '', name: '', email: '' });
+  const [f, setF] = useState({ idea: '', name: '', email: '', mobile: '' });
   const [sent, setSent] = useState(false);
   const set = (k) => (e) => setF((v) => ({ ...v, [k]: e.target.value }));
   const go = (n) => { setDir(n > step ? 1 : -1); setStep(n); };
   const ideaOk = f.idea.trim().length > 9;
-  const contactOk = f.name.trim().length > 1 && isEmail(f.email);
+  const contactOk = f.name.trim().length > 1 && isEmail(f.email) && isMobile(f.mobile);
   const pick = (i) => { setNeed(i); setTimeout(() => go(1), 320); };
-  const reset = () => { setF({ idea: '', name: '', email: '' }); setNeed(null); setWhen(WHEN[1]); setSent(false); setDir(-1); setStep(0); };
+  const reset = () => { setF({ idea: '', name: '', email: '', mobile: '' }); setNeed(null); setWhen(WHEN[1]); setSent(false); setDir(-1); setStep(0); };
 
   return (
     <section className="cw" id="contact">
       <div className="cw-wrap">
         <div className="cw-head">
-          <span className="cw-kicker"><i />Contact us</span>
           <h2>Let’s build <em>something</em> together.</h2>
           <p>Three quick steps. It takes about a minute.</p>
         </div>
@@ -59,7 +60,7 @@ export default function ContactSteps() {
               <div className="cw-pane cw-done" key="done">
                 <svg className="cw-check" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="36" /><path d="M24 41l11 11 22-24" /></svg>
                 <h3>Thanks, {f.name.trim().split(' ')[0]}!</h3>
-                <p>Your <b>{NEEDS[need][1]}</b> request is in. We’ll reply to <b>{f.email.trim()}</b> with the next steps.</p>
+                <p>Your <b>{NEEDS[need][1]}</b> request is in. We’ll reply to <b>{f.email.trim()}</b> or call you on <b>{f.mobile.trim()}</b> with the next steps.</p>
                 <button type="button" className="cw-ghost" onClick={reset}>Send another request</button>
               </div>
             ) : step === 0 ? (
@@ -112,10 +113,14 @@ export default function ContactSteps() {
                     <span>Email address</span>
                   </label>
                 </div>
+                <label className="cw-field">
+                  <input type="tel" inputMode="tel" value={f.mobile} onChange={set('mobile')} placeholder=" " autoComplete="tel" />
+                  <span>Mobile number</span>
+                </label>
                 <div className="cw-nav">
                   <button type="button" className="cw-ghost" onClick={() => go(1)}>← Back</button>
                   <button type="submit" className={`cw-next cw-send ${contactOk ? 'ready' : ''}`} disabled={!contactOk}>
-                    <span>Send request</span><i aria-hidden="true">↗</i>
+                    <span>Make it real</span><i aria-hidden="true">↗</i>
                   </button>
                 </div>
               </form>

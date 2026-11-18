@@ -230,7 +230,7 @@ export function initMotion() {
     const cards = [...box.querySelectorAll('.shot')];
     const n = cards.length;
     if (n < 3) return;
-    const mq = matchMedia('(max-width: 820px)');
+    const mq = matchMedia('(max-width: 1100px)');
     const dots = document.createElement('div'); dots.className = 'mx-dots';
     dots.innerHTML = cards.map(() => '<i></i>').join('');
     const dotEls = [...dots.children];
@@ -736,7 +736,7 @@ export function initMotion() {
         if (week) {
           week.style.transform = `translateX(${(clamp(P * 1.05) * week.parentElement.clientWidth).toFixed(1)}px)`;
           week.classList.toggle('mx-on', P > 0.02 && P < 0.99);
-          const w = 1 + Math.round(clamp(P) * 11);
+          const w = 1 + Math.round(clamp(P) * 5); // 6-week build: WEEK 1 → WEEK 6
           if (week._w !== w) { week._w = w; week.firstChild.textContent = `WEEK ${w}`; }
         }
         if (note) note.style.setProperty('--note', P > 0.55 ? 1 : 0);
@@ -771,17 +771,27 @@ export function initMotion() {
     ring.id = 'mx-ring'; ring.innerHTML = '<span>VIEW</span>';
     document.body.appendChild(ring);
     let x = innerWidth / 2, y = innerHeight / 2, rx = x, ry = y;
-    addEventListener('pointermove', (e) => {
-      x = e.clientX; y = e.clientY; ring.classList.add('mx-show');
-      const t = e.target;
-      const view = t.closest && t.closest('.work-project, .deck-card');
-      const text = t.closest && t.closest('input, textarea');
-      const link = t.closest && t.closest('a, button, [role="button"], .fk-q');
+    const setState = (t) => {
+      const view = t && t.closest && t.closest('.work-project, .deck-card');
+      const text = t && t.closest && t.closest('input, textarea');
+      const link = t && t.closest && t.closest('a, button, [role="button"], .fk-q');
       ring.classList.toggle('mx-view', !!view);
       ring.classList.toggle('mx-text', !view && !!text);
       ring.classList.toggle('mx-link', !view && !text && !!link);
+    };
+    addEventListener('pointermove', (e) => {
+      x = e.clientX; y = e.clientY; ring.classList.add('mx-show');
+      setState(e.target);
     }, { passive: true });
-    document.addEventListener('pointerleave', () => ring.classList.remove('mx-show'));
+    // Content can move under a still pointer (scrolling, page changes): re-check what is under it,
+    // so the ring never stays stuck in its "VIEW" state.
+    const recheck = () => setState(document.elementFromPoint(x, y));
+    addEventListener('scroll', recheck, { passive: true });
+    addEventListener('click', () => requestAnimationFrame(() => requestAnimationFrame(recheck)));
+    const hide = () => { ring.classList.remove('mx-show', 'mx-view', 'mx-link', 'mx-text'); };
+    document.addEventListener('pointerleave', hide);
+    document.addEventListener('mouseout', (e) => { if (!e.relatedTarget) hide(); });
+    addEventListener('blur', hide);
     addEventListener('pointerdown', () => ring.classList.add('mx-down'));
     addEventListener('pointerup', () => ring.classList.remove('mx-down'));
     const loop = () => {

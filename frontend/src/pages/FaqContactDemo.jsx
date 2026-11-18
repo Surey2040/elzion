@@ -33,6 +33,7 @@ export default function FaqContactDemo({ variant }) {
         <form className="fc-form" onSubmit={(e)=>e.preventDefault()}>
           <div className="fc-field"><label>Name</label><input placeholder="Your name" /></div>
           <div className="fc-field"><label>Email</label><input type="email" placeholder="you@company.com" /></div>
+          <div className="fc-field"><label>Mobile number</label><input type="tel" inputMode="tel" placeholder="+91 98765 43210" autoComplete="tel" /></div>
           <div className="fc-field"><label>Project type</label><select defaultValue=""><option value="" disabled>Select a direction</option><option>Website</option><option>Mobile app</option><option>ERP / business system</option><option>AI automation</option></select></div>
           <div className="fc-field fc-full"><label>About the project</label><textarea placeholder="What are you building, and why now?" /></div>
           <button type="submit">Send the signal <span>↗</span></button>

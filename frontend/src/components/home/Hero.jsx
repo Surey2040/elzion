@@ -39,40 +39,23 @@ export default function Hero() {
         </div>
 
         <div className="shots">
-                    <figure className="shot" style={card(-348, 175, 214, 7, 1)}>
-            <div className="scr m-site m-estate">
-              <div className="bar"><b></b><span></span><span></span><span></span><i></i></div>
-              <div className="copy"><strong>Spaces<br />that Inspire</strong><span></span><span></span><em></em></div>
-            </div>
+          <figure className="shot" style={card(-348, 175, 214, 7, 1)}>
+            <div className="scr m-img"><img src="/assets/hero/web-boutique.jpg" alt="Boutique fashion website homepage" loading="eager" decoding="async" /></div>
             <figcaption>Web Design</figcaption>
           </figure>
 
           <figure className="shot" style={card(562, 378, 214, 37, 1)}>
-            <div className="scr m-app2">
-              <div className="ph ph-dark"><b></b><strong>Track<br />Manage<br />Grow</strong><span></span><i></i></div>
-              <div className="ph ph-light"><b></b><span></span><span></span><span></span><span></span><span></span></div>
-            </div>
+            <div className="scr m-img"><img src="/assets/hero/app-development.jpg" alt="Jothi Vel Chits and Kadaikutty POS mobile apps" loading="eager" decoding="async" /></div>
             <figcaption>App Development</figcaption>
           </figure>
 
           <figure className="shot" style={card(-627, 513, 214, -10, 1)}>
-            <div className="scr m-site m-shop">
-              <div className="bar"><b></b><span></span><span></span><span></span><i></i></div>
-              <div className="copy"><strong>New<br />Collection</strong><span></span><em></em></div>
-              <div className="row"><i></i><i></i><i></i><i></i><i></i></div>
-            </div>
+            <div className="scr m-img"><img src="/assets/hero/ecommerce-store.jpg" alt="E-commerce store product listing" loading="eager" decoding="async" /></div>
             <figcaption>E-commerce</figcaption>
           </figure>
 
           <figure className="shot" style={card(533, 785, 214, -13, 1)}>
-            <div className="scr m-crm2">
-              <div className="hd"><b></b>CRM<i></i></div>
-              <div className="cols">
-                <div className="col"><small>New Leads</small><p></p><p></p><p></p></div>
-                <div className="col"><small>In Progress</small><p></p><p></p><p></p></div>
-                <div className="col won"><small>Closed Won</small><p></p><p></p></div>
-              </div>
-            </div>
+            <div className="scr m-img"><img src="/assets/hero/hospital-crm.jpg" alt="Hospital CRM patient pipeline" loading="eager" decoding="async" /></div>
             <figcaption>CRM Solutions</figcaption>
           </figure>
 

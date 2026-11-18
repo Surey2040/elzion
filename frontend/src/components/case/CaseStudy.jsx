@@ -69,7 +69,7 @@ export default function CaseStudy({ data }) {
     <div className={`cx cx-${theme}`}>
       <header className="cx-nav">
         <Link to="/" className="logo">elz<b>ion.</b></Link>
-        <span className="cx-nav-name"><i />{name}</span>
+        <span className="cx-nav-name">{name}</span>
         <div><Link to={next.to}>Next project</Link><Link to="/#work">All work ↗</Link></div>
       </header>
 

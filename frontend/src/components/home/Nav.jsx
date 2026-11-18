@@ -19,29 +19,20 @@ function isDarkBehind(header) {
 
 export default function Nav() {
   const headerRef = useRef(null);
-  const [compact, setCompact] = useState(false);
   const [onDark, setOnDark] = useState(false);
-
-  // Once most of the hero has scrolled past, the section links fold away
-  // and only the "Let's talk" button stays (CSS: .nav.is-compact).
+  // The full nav (logo, links pill and "Let's talk") is always visible.
   // Over dark sections (e.g. the red project journey) the nav switches to light colours (.is-on-dark).
   useEffect(() => {
-    const hero = document.querySelector('.hero');
     let frame = 0;
-
-    const update = () => {
+    const checkDark = () => {
       frame = 0;
-      const pastHero = hero
-        ? hero.getBoundingClientRect().bottom < window.innerHeight * 0.55
-        : window.scrollY > 160;
-      setCompact(window.scrollY > 40 && pastHero);
       if (headerRef.current) setOnDark(isDarkBehind(headerRef.current));
     };
     const schedule = () => {
-      if (!frame) frame = requestAnimationFrame(update);
+      if (!frame) frame = requestAnimationFrame(checkDark);
     };
 
-    update();
+    checkDark();
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', schedule);
     return () => {
@@ -51,7 +42,7 @@ export default function Nav() {
     };
   }, []);
 
-  const classes = ['nav', compact && 'is-compact', onDark && 'is-on-dark'].filter(Boolean).join(' ');
+  const classes = ['nav', onDark && 'is-on-dark'].filter(Boolean).join(' ');
 
   return (
     <header ref={headerRef} className={classes}>

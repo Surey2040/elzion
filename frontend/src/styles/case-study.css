@@ -9,7 +9,7 @@
 .cx .cx-kicker{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--acc)}
 .cx .cx-kicker::before{content:"";width:22px;height:2px;background:currentColor}
 .cx h2{font-size:clamp(36px,4.6vw,72px);font-weight:800;letter-spacing:-.05em;line-height:1;margin-top:14px}
-.cx h2 em{font-family:Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.03em;color:var(--acc)}
+.cx h2 em{font-family:Gelasio,Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.03em;color:var(--acc)}
 
 /* phone frame */
 .cx-phone{position:relative;margin:0;aspect-ratio:9/19.5;border-radius:34px;padding:8px;background:#0d0d0d;
@@ -22,7 +22,6 @@
   background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .cx-nav .logo{color:var(--fg)}
 .cx-nav-name{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
-.cx-nav-name i{width:8px;height:8px;border-radius:50%;background:var(--acc);animation:cxPing 2s infinite}
 @keyframes cxPing{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--acc) 60%,transparent)}70%,100%{box-shadow:0 0 0 9px transparent}}
 .cx-nav div{display:flex;gap:8px}
 .cx-nav div a{padding:9px 16px;border-radius:999px;border:1px solid var(--line);font-size:13px;font-weight:600;color:var(--fg);transition:background .3s,color .3s,border-color .3s}

@@ -26,10 +26,8 @@ export default function Work() {
         <div className="dark-card">
           <div className="work-head">
             <div>
-              <span className="work-kicker">SELECTED PRODUCT SYSTEMS</span>
               <h2>See Work</h2>
             </div>
-            <p className="lead">Real interfaces presented as living product systems—designed to be explored, not placed inside a static mockup.</p>
           </div>
           <div className="work-reel">
             {PROJECTS.map((proj) => (
